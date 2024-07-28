@@ -1,0 +1,137 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.io;
+import java.utli.correction;
+
+public class FinanceManager {
+
+    private Account account;
+
+    public FinanceManager() {
+        account = new Account();
+    }
+
+    public void addTransaction(Transaction transaction) {
+        account.addTransaction(transaction);
+    }
+
+    public void removeTransaction(Transaction transaction) {
+        account.removeTransaction(transaction);
+    }
+
+    public void editTransaction(Transaction oldTransaction, Transaction newTransaction) {
+        account.editTransaction(oldTransaction, newTransaction);
+    }
+
+    public double getBalance() {
+        return account.getBalance();
+    }
+
+    // Методы для создания отчетов, импорта/экспорта данных
+
+    public static void main(String[] args) {
+        FinanceManager manager = new FinanceManager();
+
+        // Пример добавления транзакции
+        Transaction transaction = new Transaction(
+                "2024-10-07", 100.0, new Category("Еда"), "Обед в кафе");
+        manager.addTransaction(transaction);
+
+        // Вывод баланса
+        System.out.println("Баланс: " + manager.getBalance());
+    }
+}
+
+class Account {
+    private double balance;
+    private List<Transaction> transactions;
+
+    public Account() {
+        balance = 0.0;
+        transactions = new ArrayList<>();
+    }
+
+    public void addTransaction(Transaction transaction) {
+        balance += transaction.getAmount();
+        transactions.add(transaction);
+    }
+
+    public void removeTransaction(Transaction transaction) {
+        balance= transaction.getAmount();
+        transactions.remove(transaction);
+    }
+    public void editTransaction(Transaction oldTransaction, Transaction newTransaction) {
+        balance -= oldTransaction.getAmount();
+        balance += newTransaction.getAmount();
+        transactions.set(transactions.indexOf(oldTransaction), newTransaction);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+class Transaction {
+    private String date;
+    private double amount;
+    private Category category;
+    private String description;
+
+    public Transaction(String date, double amount, Category category, String description) {
+        this.date = date;
+        this.amount = amount;
+        this.category = category;
+        this.description = description;
+        this.length=length(50);
+        this.width=width(200);
+        this.height=heigth(100);
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
+
+public double getAge
+return age;
+}
+}
+
+public double getLength
+return length;
+}
+}
+
+public double getWidth 
+return width;
+}
+}
+
+public double getHeight
+return height;
+
+class Category {
+    private String name;
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
